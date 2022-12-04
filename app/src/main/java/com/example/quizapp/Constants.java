@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Constants {
     public static ArrayList<Question> getQuestions() {
-        ArrayList<Question> questionsList = new ArrayList<Question>();
+        ArrayList<Question> questionsList = new ArrayList<>();
 
         // 1
         Question que1 = new Question(

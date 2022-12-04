@@ -3,30 +3,34 @@ package com.example.quizapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.quizapp.databinding.ActivityQuizQuestionsBinding;
 
+
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class QuizQuestionsActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityQuizQuestionsBinding binding;
-    private int mCurrentPosition = 1 ;
-    private ArrayList<Question> mQuestionsList = null;
-    protected int mCurrentSelectedPosition = 0;
+    private int mCurrentPosition = 1 ; //The position of current question out of 10
+    private ArrayList<Question> mQuestionsList = new ArrayList<>();
+    protected int mCurrentSelectedPosition = 0; // The position of selected choice
+    Boolean isSubmitted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        com.example.quizapp.databinding.ActivityQuizQuestionsBinding binding = ActivityQuizQuestionsBinding.inflate(getLayoutInflater());
+        binding = ActivityQuizQuestionsBinding.inflate(getLayoutInflater());
+
         setContentView(binding.getRoot());
 
+        // mQuestionList will contain 10 questions of each type-difficulty
         mQuestionsList = Constants.getQuestions();
 
         setQuestion();
@@ -38,14 +42,23 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
         binding.tvOptionThree.setOnClickListener(this);
 
         binding.tvOptionFour.setOnClickListener(this);
+
+        binding.btnSubmit.setOnClickListener(this);
     }
 
     // Set question from questionList
+    @SuppressLint("SetTextI18n")
     private void setQuestion() {
-      mCurrentPosition = 1;
         Question question = mQuestionsList.get(mCurrentPosition - 1);
 
         defaultOptionsView();
+
+        // If there was the final question change button to FINISH
+        if (mCurrentPosition == mQuestionsList.size()) {
+            binding.btnSubmit.setText("FINISH");
+        } else {
+            binding.btnSubmit.setText("SUBMIT");
+        }
 
         binding.progressBar.setProgress(mCurrentPosition);
 
@@ -67,7 +80,7 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
     // Set view for default option
     protected void defaultOptionsView() {
 
-        ArrayList<TextView> options = new ArrayList<TextView>();
+        ArrayList<TextView> options = new ArrayList<>();
 
         options.add(0, binding.tvOptionOne);
         options.add(1, binding.tvOptionTwo);
@@ -83,31 +96,92 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
     }
 
     // Rewrite onClick function to set selected option
+    @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.tv_option_one:
-                selectedOptionView(binding.tvOptionOne, 1);
+            switch (view.getId()) {
+                case R.id.tv_option_one:
+                    if (!isSubmitted){
+                        selectedOptionView(binding.tvOptionOne, 1);
+                    }
+                    break;
+
+                case R.id.tv_option_two:
+                    if (!isSubmitted) {
+                        selectedOptionView(binding.tvOptionTwo, 2);
+                    }
+                    break;
+
+                case R.id.tv_option_three:
+                    if (!isSubmitted){
+                        selectedOptionView(binding.tvOptionThree, 3);
+                    }
+                    break;
+
+                case R.id.tv_option_four:
+                    if (!isSubmitted) {
+                        selectedOptionView(binding.tvOptionFour, 4);
+                    }
+                    break;
+
+                case R.id.btn_submit:
+                    if (mCurrentSelectedPosition == 0) {
+                        isSubmitted = false;
+                        mCurrentPosition++;
+
+                        if (mCurrentPosition <= mQuestionsList.size()) {
+                            setQuestion();
+                        } else {
+                            Toast.makeText(this, "You have successfully finished the quiz", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        isSubmitted = true;
+                        Question question = mQuestionsList.get(mCurrentPosition - 1);
+                        if (mCurrentSelectedPosition == question.getCorrectAnswer()) {
+
+                            answerView(mCurrentSelectedPosition, R.drawable.correct_option_border_bg);
+                        } else {
+
+                            answerView(mCurrentSelectedPosition, R.drawable.wrong_option_border_bg);
+                            answerView(question.getCorrectAnswer(),R.drawable.result_option_border_bg);
+                        }
+
+                        binding.btnSubmit.setText("NEXT");
+
+                        if (mCurrentPosition == mQuestionsList.size()) {
+                            binding.btnSubmit.setText("FINISH");
+                        }
+                        mCurrentSelectedPosition = 0;
+                    }
+                    break;
+         }
+        }
+
+    // Design wrong/correct answer question
+    private void answerView(int answer, int drawableView) {
+        switch (answer) {
+            case 1:
+                binding.tvOptionOne.setBackground(ContextCompat.getDrawable(this,drawableView));
                 break;
 
-            case R.id.tv_option_two:
-                selectedOptionView(binding.tvOptionTwo, 2);
+            case 2:
+                binding.tvOptionTwo.setBackground(ContextCompat.getDrawable(this,drawableView));
                 break;
 
-            case R.id.tv_option_three:
-                selectedOptionView(binding.tvOptionThree, 3);
+            case 3:
+                binding.tvOptionThree.setBackground(ContextCompat.getDrawable(this, drawableView));
                 break;
 
-            case R.id.tv_option_four:
-                selectedOptionView(binding.tvOptionFour, 4);
+            case 4:
+                binding.tvOptionFour.setBackground(ContextCompat.getDrawable(this, drawableView));
                 break;
         }
     }
 
-    // Set selected option
+    // Set selected option view
     private void selectedOptionView(TextView tv, int selectedOptionNumber) {
-        defaultOptionsView();
-        mCurrentSelectedPosition = selectedOptionNumber;
+        defaultOptionsView(); // set default view for remain options
+        mCurrentSelectedPosition = selectedOptionNumber; // set selected position
         tv.setTextColor(Color.parseColor("#363A43"));
         tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
         tv.setBackground(ContextCompat.getDrawable(this,R.drawable.selected_option_border_bg));
