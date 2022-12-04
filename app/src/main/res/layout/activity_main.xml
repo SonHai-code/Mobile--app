@@ -52,6 +52,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 />
+
             <EditText
                 android:id="@+id/et_username"
                 android:layout_width="match_parent"
@@ -61,8 +62,6 @@
                 android:textColorHint="#7A8089"
                 android:padding="10sp"
                 />
-
-
 
             <Button
                 android:id="@+id/btn_start"
