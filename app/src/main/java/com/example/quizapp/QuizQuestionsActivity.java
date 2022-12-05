@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -20,15 +21,18 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
     ActivityQuizQuestionsBinding binding;
     private int mCurrentPosition = 1 ; //The position of current question out of 10
     private ArrayList<Question> mQuestionsList = new ArrayList<>();
-    protected int mCurrentSelectedPosition = 0; // The position of selected choice
+    private int mCurrentSelectedPosition = 0; // The position of selected choice
+    private int mCorrectAnswers = 0;
+    private String mUserName;
     Boolean isSubmitted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityQuizQuestionsBinding.inflate(getLayoutInflater());
-
         setContentView(binding.getRoot());
+
+        mUserName = getIntent().getStringExtra(Constants.USER_NAME);
 
         // mQuestionList will contain 10 questions of each type-difficulty
         mQuestionsList = Constants.getQuestions();
@@ -132,16 +136,19 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
                         if (mCurrentPosition <= mQuestionsList.size()) {
                             setQuestion();
                         } else {
-                            Toast.makeText(this, "You have successfully finished the quiz", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(this, ResultActivity.class);
+                            intent.putExtra(Constants.USER_NAME, mUserName);
+                            intent.putExtra(Constants.CORRECT_ANSWER, mCorrectAnswers);
+                            intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList.size());
+                            startActivity(intent);
                         }
                     } else {
                         isSubmitted = true;
                         Question question = mQuestionsList.get(mCurrentPosition - 1);
                         if (mCurrentSelectedPosition == question.getCorrectAnswer()) {
-
+                            mCorrectAnswers ++;
                             answerView(mCurrentSelectedPosition, R.drawable.correct_option_border_bg);
                         } else {
-
                             answerView(mCurrentSelectedPosition, R.drawable.wrong_option_border_bg);
                             answerView(question.getCorrectAnswer(),R.drawable.result_option_border_bg);
                         }

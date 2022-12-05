@@ -3,6 +3,10 @@ package com.example.quizapp;
 import java.util.ArrayList;
 
 public class Constants {
+    final static String USER_NAME = "user_name";
+    final static String TOTAL_QUESTIONS = "total_questions";
+    final static String CORRECT_ANSWER = "correct_answer";
+
     public static ArrayList<Question> getQuestions() {
         ArrayList<Question> questionsList = new ArrayList<>();
 
