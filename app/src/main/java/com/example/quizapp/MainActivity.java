@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
             if(binding.etUsername.getText().toString().isEmpty()) {
                 Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show();
             } else {
-                Intent intent = new Intent(this, HomeActivity.class);
-                intent.putExtra(Constants.USER_NAME, binding.etUsername.getText().toString());
+                Intent intent = new Intent(this, HomeActivity.class );
+                intent.putExtra(Constants.USER_NAME, binding.etUsername.getText().toString().trim());
                 startActivity(intent);
                 finish();
             }

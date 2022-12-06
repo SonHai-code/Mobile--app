@@ -6,6 +6,8 @@ public class Constants {
     final static String USER_NAME = "user_name";
     final static String TOTAL_QUESTIONS = "total_questions";
     final static String CORRECT_ANSWER = "correct_answer";
+    final static String CATEGORY = "category";
+    final static String DIFFICULTY = "difficulty";
 
     public static ArrayList<Question> getQuestions() {
         ArrayList<Question> questionsList = new ArrayList<>();

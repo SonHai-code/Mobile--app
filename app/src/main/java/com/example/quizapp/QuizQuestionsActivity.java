@@ -25,6 +25,8 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
     private int mCorrectAnswers = 0;
     private String mUserName;
     Boolean isSubmitted = false;
+    private String mCategory = "";
+    private String mDifficulty = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,9 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
         setContentView(binding.getRoot());
 
         mUserName = getIntent().getStringExtra(Constants.USER_NAME);
+        mCategory = getIntent().getStringExtra(Constants.CATEGORY);
+        mDifficulty = getIntent().getStringExtra(Constants.DIFFICULTY);
+
 
         // mQuestionList will contain 10 questions of each type-difficulty
         mQuestionsList = Constants.getQuestions();
@@ -140,6 +145,8 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
                             intent.putExtra(Constants.USER_NAME, mUserName);
                             intent.putExtra(Constants.CORRECT_ANSWER, mCorrectAnswers);
                             intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList.size());
+                            intent.putExtra(Constants.DIFFICULTY,mDifficulty);
+                            intent.putExtra(Constants.CATEGORY, mCategory);
                             startActivity(intent);
                         }
                     } else {
@@ -164,7 +171,7 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
          }
         }
 
-    // Design wrong/correct answer question
+    // Set background for wrong/correct answer question
     private void answerView(int answer, int drawableView) {
         switch (answer) {
             case 1:
