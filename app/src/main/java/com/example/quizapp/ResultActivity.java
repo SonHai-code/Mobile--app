@@ -24,11 +24,22 @@ public class ResultActivity extends AppCompatActivity {
         int totalQuestions = getIntent().getIntExtra(Constants.TOTAL_QUESTIONS, 0);
         int correctAnswers = getIntent().getIntExtra(Constants.CORRECT_ANSWER, 0);
 
+
         binding.tvScore.setText("Your score is " + correctAnswers + "/" + totalQuestions );
 
         binding.btnFinish.setOnClickListener(view -> {
             startActivity(new Intent(this, MainActivity.class));
             finish();
+        });
+
+        binding.btnShare.setOnClickListener(view -> {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+            sendIntent.setType("text/plain");
+
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
         });
 
 

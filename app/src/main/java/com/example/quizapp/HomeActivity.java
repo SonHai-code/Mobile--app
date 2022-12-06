@@ -73,10 +73,17 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.information:
-                Toast.makeText(this, "information", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, InformationActivity.class);
+                startActivity(intent);
                 break;
             case R.id.feedback:
-                Toast.makeText(this, "feedback", Toast.LENGTH_SHORT).show();
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
                 break;
         }
         return super.onOptionsItemSelected(item);

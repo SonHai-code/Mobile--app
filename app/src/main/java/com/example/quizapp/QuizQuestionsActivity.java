@@ -148,6 +148,7 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
                             intent.putExtra(Constants.DIFFICULTY,mDifficulty);
                             intent.putExtra(Constants.CATEGORY, mCategory);
                             startActivity(intent);
+                            finish();
                         }
                     } else {
                         isSubmitted = true;

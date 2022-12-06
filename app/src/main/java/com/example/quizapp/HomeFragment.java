@@ -56,7 +56,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
 
-
         switch (view.getId()) {
             case R.id.cvMath:
                 sendCategoryData("math");
@@ -82,7 +81,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         Bundle result = new Bundle();
         result.putString(Constants.CATEGORY, data);
         getParentFragmentManager().setFragmentResult(Constants.CATEGORY, result);
-
 
     }
 }
