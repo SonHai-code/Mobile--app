@@ -42,15 +42,15 @@ public class DifficultyFragment extends Fragment implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cvEasy:
-                sendDataToQuizQuestions("easy");
+                sendDataToQuizQuestions("EASY");
                 break;
 
             case R.id.cvMedium:
-                sendDataToQuizQuestions("medium");
+                sendDataToQuizQuestions("MEDIUM");
                 break;
 
             case R.id.cvHard:
-                sendDataToQuizQuestions("hard");
+                sendDataToQuizQuestions("HARD");
                 break;
         }
 

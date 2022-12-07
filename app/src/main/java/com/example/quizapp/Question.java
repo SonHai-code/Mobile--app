@@ -4,6 +4,24 @@ public class Question {
     private  int id;
     private String question;
     private int image;
+    private String difficulty;
+    private String category;
+
+    public Question(int id, String question, int image, String difficulty, String category, String optionOne, String optionTwo, String optionThree, String optionFour, int correctAnswer) {
+        this.id = id;
+        this.question = question;
+        this.image = image;
+        this.difficulty = difficulty;
+        this.category = category;
+        this.optionOne = optionOne;
+        this.optionTwo = optionTwo;
+        this.optionThree = optionThree;
+        this.optionFour = optionFour;
+        this.correctAnswer = correctAnswer;
+    }
+
+    // CONSTRUCTOR
+
 
     public int getId() {
         return id;
@@ -75,15 +93,19 @@ public class Question {
     private String optionFour;
     private int correctAnswer;
 
+    public String getDifficulty() {
+        return difficulty;
+    }
 
-    public Question(int id, String question, int image, String optionOne, String optionTwo, String optionThree, String optionFour, int correctAnswer) {
-        this.id = id;
-        this.question = question;
-        this.image = image;
-        this.optionOne = optionOne;
-        this.optionTwo = optionTwo;
-        this.optionThree = optionThree;
-        this.optionFour = optionFour;
-        this.correctAnswer = correctAnswer;
+    public String getCategory() {
+        return category;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

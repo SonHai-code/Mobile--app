@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class QuizQuestionsActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityQuizQuestionsBinding binding;
     private int mCurrentPosition = 1 ; //The position of current question out of 10
-    private ArrayList<Question> mQuestionsList = new ArrayList<>();
+    private ArrayList<Question> mQuestionsList = new ArrayList<Question>();
     private int mCurrentSelectedPosition = 0; // The position of selected choice
     private int mCorrectAnswers = 0;
     private String mUserName;
@@ -40,7 +40,7 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
 
 
         // mQuestionList will contain 10 questions of each type-difficulty
-        mQuestionsList = Constants.getQuestions();
+        mQuestionsList = Constants.getQuestions(mDifficulty, mCategory);
 
         setQuestion();
 

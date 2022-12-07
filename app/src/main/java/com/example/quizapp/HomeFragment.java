@@ -58,19 +58,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         switch (view.getId()) {
             case R.id.cvMath:
-                sendCategoryData("math");
+                sendCategoryData("MATH");
                 break;
 
             case R.id.cvGeography:
-                sendCategoryData("geography");
+                sendCategoryData("GEOGRAPHY");
                 break;
 
             case R.id.cvHistory:
-                sendCategoryData("history");
+                sendCategoryData("HISTORY");
                 break;
 
             case R.id.cvScience:
-                sendCategoryData("science");
+                sendCategoryData("SCIENCE");
                 break;
         }
     }
