@@ -61,5 +61,6 @@ public class DifficultyFragment extends Fragment implements View.OnClickListener
         intent.putExtra(Constants.CATEGORY, mCategory);
         intent.putExtra(Constants.DIFFICULTY, difficulty);
         getActivity().startActivity(intent);
+        getActivity().finish();
     }
 }

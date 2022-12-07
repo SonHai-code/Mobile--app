@@ -489,10 +489,161 @@ public class Constants {
 
 
         // SCIENCE - EASY
+        Question q1_science_easy = new Question(91,"Brass gets discoloured in air because of the presence of which of the following gases in air?",
+                0, "EASY", "SCIENCE",
+                "Oxygen", "Hydrogen sulphide",
+                "Carbon dioxide", "Nitrogen",2);
+
+        Question q2_science_easy = new Question(92,"Which of the following is a non metal that remains liquid at room temperature?",
+                0, "EASY", "SCIENCE",
+                "Phosphorous", "Bromine",
+                "Chlorine", "Helium",2);
+
+        Question q3_science_easy = new Question(93,"Chlorophyll is a naturally occurring chelate compound in which central metal is",
+                0, "EASY", "SCIENCE",
+                "copper", "magnesium",
+                "iron", "calcium",2);
+
+        Question q4_science_easy = new Question(94,
+                "Which of the following is used in pencils?",
+                0, "EASY", "SCIENCE",
+                "Graphite", "Silicon",
+                "Charcoal", "Phosphorous",1);
+
+        Question q5_science_easy = new Question(95,"Which of the following metals forms an amalgam with other metals?",
+                0, "EASY", "SCIENCE",
+                "Tin", "Mercury",
+                "Lead", "Zinc",2);
+
+        Question q6_science_easy = new Question(96,"Chemical formula for water is",
+                0, "EASY", "SCIENCE",
+                "NaAlO2", "H2O",
+                "Al2O3", "CaSiO3",2);
+
+        Question q7_science_easy = new Question(97,
+                "Washing soda is the common name for",
+                0, "EASY", "SCIENCE",
+                "Sodium carbonate", "Calcium bicarbonate",
+                "Sodium bicarbonate", "Calcium carbonate",1);
+
+        Question q8_science_easy = new Question(98,"\t\n" +
+                "The gas usually filled in the electric bulb is",
+                0, "EASY", "SCIENCE",
+                "nitrogen", "hydrogen",
+                "carbon dioxide", "oxygen",1);
+
+        Question q9_science_easy = new Question(99,"Quartz crystals normally used in quartz clocks etc. is chemically",
+                0, "EASY", "SCIENCE",
+                "silicon dioxide", "germanium oxide",
+                "a mixture of germanium oxide and silicon dioxide", "sodium silicate",1);
+
+        Question q10_science_easy = new Question(100,"Which of the gas is not known as green house gas?",
+                0, "EASY", "SCIENCE",
+                "Methane", "Nitrous oxide",
+                "Carbon dioxide", "Hydrogen",4);
 
         // SCIENCE - MEDIUM
+        Question q1_science_medium = new Question(101,"Human teeth and elephant’s tusk are",
+                0, "MEDIUM", "SCIENCE",
+                "Analogous organs", "Vestigeal organs",
+                "Homologous organs", "Rudimentary organs",3);
+
+        Question q2_science_medium = new Question(102,"Independent inheritance of two separate traits, shape and colour of seeds in Mendel’s cross on pea plants resulted in a observable ratio of:\n",
+                0, "MEDIUM", "SCIENCE",
+                "3 : 1", " 9 : 3 : 3 : 1",
+                "1 : 1", " 9 : 4 : 2 : 1",2);
+
+        Question q3_science_medium = new Question(103,"Which of these is not a vestigial organ in human beings?",
+                0, "MEDIUM", "SCIENCE",
+                "Appendix", "Wisdom tooth",
+                "Nictitating membrane", " Gall bladder",4);
+
+        Question q4_science_medium = new Question(104,"Evolution of wild cabbage is an example of:",
+                0, "MEDIUM", "SCIENCE",
+                "Artificial selection", "Natural selection",
+                "Mutation", "Genetic drift",1);
+
+        Question q5_science_medium = new Question(105,"The modern day Human species has evolved from its earliest ancestors who lived in:",
+                0, "MEDIUM", "SCIENCE",
+                "Asia", "Australia",
+                "Africa", "China",3);
+
+        Question q6_science_medium = new Question(106,"Two pink coloured flowers on crossing resulted in 1 red, 2 pink and 1 white flower progeny. The nature of the cross will be",
+                0, "MEDIUM", "SCIENCE",
+                "double fertilisation", "self pollination",
+                "cross fertilisation", "no fertilisation",2);
+
+        Question q7_science_medium = new Question(107,"Which of the following statement is incorrect?\n",
+                0, "MEDIUM", "SCIENCE",
+                "For every hormone there is a gene", "For every protein there is a gene.",
+                "For production of every enzyme there is a gene.", "For every molecule of fat there is a gene",4);
+
+        Question q8_science_medium = new Question(108,"If a round, green seeded pea plant (RR yy) is crossed with wrinkled, yellow seeded pea plant (rr YY), the seeds produced in F1 generation are",
+                0, "MEDIUM", "SCIENCE",
+                "Oxygen", "Hydrogen",
+                "Carbon", "Nitrogen",2);
+
+        Question q9_science_medium = new Question(109,"xx",
+                0, "MEDIUM", "SCIENCE",
+                "round and yellow", "round and green",
+                "wrinkled and green", "wrinkled and yellow",1);
+
+        Question q10_science_medium = new Question(110,"A zygote which has an X-chromosome inherited from the father will develop into a",
+                0, "MEDIUM", "SCIENCE",
+                "boy", "girl",
+                "X- chromosome does not determine the sex of a child", "either boy or girl",2);
 
         // SCIENCE - HARD
+        Question q1_science_hard = new Question(111,"Which among the following is the most common method of pollination in flowers without petals?",
+                0, "HARD", "SCIENCE",
+                "Wind", "Water",
+                "Insects", "All of above",1);
+
+        Question q2_science_hard = new Question(112,"The name of Karl Landsteiner is associated with the discovery of which of the following ?",
+                0, "HARD", "SCIENCE",
+                "Human Endocrine System", "Human Blood Groups",
+                "Vitamin B Group", "Proteins",2);
+
+        Question q3_science_hard = new Question(113,"What is the slope of the velocity-time graph when an object moves with constant negative acceleration, having positive initial velocity?",
+                0, "HARD", "SCIENCE",
+                "90°", "more than 90°",
+                "less than 90°", "0°",2);
+
+        Question q4_science_hard = new Question(114,"What is the name of the Information and Communication technology based multi-modal platform for governance, chaired by the Prime Minister?",
+                0, "HARD", "SCIENCE",
+                "PRATAP", "PRAGATI",
+                "PRANAT", "PAWAN",2);
+
+        Question q5_science_hard = new Question(115,"Magnetic Effect of Electric Current Class 10 MCQ Question 1. Magnetic effect of current was discovered by",
+                0, "HARD", "SCIENCE",
+                "Oersted", "Faraday",
+                "Bohr", "Ampere",1);
+
+        Question q6_science_hard = new Question(116,"A current through a horizontal power line flows from south to North direction. The direction of magnetic field line 0.5m above it is",
+                0, "HARD", "SCIENCE",
+                "North", "South",
+                "West", "East",1);
+
+        Question q7_science_hard = new Question(117,"MCQ Questions for Class 10 Magnetic Effect of Electric Current Question 10. The strength of each of magnet reduces to half when it cut along its length into the equal parts magnetic field strength of a solenoid. Polarity of solenoid can be determined by",
+                0, "HARD", "SCIENCE",
+                "boy", "girl",
+                "X", "either",2);
+
+        Question q8_science_hard = new Question(118,"xx",
+                0, "HARD", "SCIENCE",
+                "use of compass needle", "Right hand thumb rule",
+                "fleming left hand rule", "either (a) or (b)",4);
+
+        Question q9_science_hard = new Question(119,"A soft iron bar is introduced inside the current carrying solenoid. The magnetic field inside the solenoid",
+                0, "HARD", "SCIENCE",
+                "will decrease", "will remains same",
+                "will increase", "will become zero",3);
+
+        Question q10_science_hard = new Question(120,"The magnetic field lines always begin from",
+                0, "HARD", "SCIENCE",
+                "N-pole and end on S-pole.", "S-pole and end on N-pole.",
+                "start from the middle and end at N-pole.", "start from the middle and end at S-pole.",1);
+
 
         List<Question> questions = List.of(q1_geo_easy,q2_geo_easy,q3_geo_easy,q4_geo_easy,q5_geo_easy,
                                            q6_geo_easy,q7_geo_easy,q8_geo_easy,q9_geo_easy,q10_geo_easy,
@@ -519,7 +670,16 @@ public class Constants {
                                            q6_history_medium,q7_history_medium,q8_history_medium,q9_history_medium,q10_history_medium,
 
                                            q1_history_hard,q2_history_hard,q3_history_hard,q4_history_hard,q5_history_hard,
-                                           q6_history_hard,q7_history_hard,q8_history_hard,q9_history_hard,q10_history_hard
+                                           q6_history_hard,q7_history_hard,q8_history_hard,q9_history_hard,q10_history_hard,
+
+                                           q1_science_easy, q2_science_easy, q3_science_easy, q4_science_easy, q5_science_easy,
+                                           q6_science_easy, q7_science_easy, q8_science_easy, q9_science_easy, q10_science_easy,
+
+                                           q1_science_medium, q2_science_medium, q3_science_medium, q4_science_medium, q5_science_medium,
+                                           q6_science_medium, q7_science_medium, q8_science_medium, q9_science_medium, q10_science_medium,
+
+                                           q1_science_hard, q2_science_hard, q3_science_hard, q4_science_hard, q5_science_hard,
+                                           q6_science_hard, q7_science_hard, q8_science_hard, q9_science_hard, q10_science_hard
                                             );
 
 
