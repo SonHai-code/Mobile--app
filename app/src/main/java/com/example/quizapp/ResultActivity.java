@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.session.MediaSession;
 import android.os.Bundle;
+import android.os.Parcelable;
 
 import com.example.quizapp.databinding.ActivityResultBinding;
 
 public class ResultActivity extends AppCompatActivity {
     ActivityResultBinding binding;
+
+    private int mNumberOfHistories = 0;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -28,10 +32,10 @@ public class ResultActivity extends AppCompatActivity {
         int correctAnswers = getIntent().getIntExtra(Constants.CORRECT_ANSWER, 0);
 
 
-
         binding.tvScore.setText("Your score is " + correctAnswers + "/" + totalQuestions );
 
         binding.btnFinish.setOnClickListener(view -> {
+            mNumberOfHistories ++;
             Intent intent = new Intent(this, HomeActivity.class);
 
             intent.putExtra(Constants.USER_NAME, binding.tvUsername.getText().toString().trim());
@@ -39,6 +43,7 @@ public class ResultActivity extends AppCompatActivity {
             intent.putExtra(Constants.DIFFICULTY, difficulty);
             intent.putExtra(Constants.CORRECT_ANSWER, correctAnswers);
             intent.putExtra(Constants.TOTAL_QUESTIONS, totalQuestions);
+            intent.putExtra(Constants.NUM_OF_HISTORIES, mNumberOfHistories);
 
             startActivity(intent);
             finish();

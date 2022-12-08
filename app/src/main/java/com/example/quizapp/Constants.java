@@ -11,6 +11,7 @@ public class Constants {
     final static String CORRECT_ANSWER = "correct_answer";
     final static String CATEGORY = "category";
     final static String DIFFICULTY = "difficulty";
+    final static String NUM_OF_HISTORIES = "numberOfHistories";
 
 
     public static ArrayList<Question> getQuestions(String difficulty, String category) {

@@ -20,10 +20,12 @@ import java.util.List;
 public class HistoryFragment extends Fragment {
     FragmentHistoryBinding binding;
     private HistoryAdapter historyAdapter;
-    private int mCorrectAnswers = 0;
-    private int mTotalQuestions = 0;
+    private int mCorrectAnswers;
+    private int mTotalQuestions;
     private String mCategory = "";
     private String mDifficulty = "";
+    private int mNumberOfHistories;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,10 +33,12 @@ public class HistoryFragment extends Fragment {
         binding = FragmentHistoryBinding.inflate(inflater, container, false);
 
         if (this.getArguments() != null) {
-            mCorrectAnswers = this.getArguments().getInt(Constants.CORRECT_ANSWER);
-            mTotalQuestions = this.getArguments().getInt(Constants.TOTAL_QUESTIONS);
+            mNumberOfHistories = this.getArguments().getInt(Constants.NUM_OF_HISTORIES, 0);
+            mCorrectAnswers = this.getArguments().getInt(Constants.CORRECT_ANSWER, 0);
+            mTotalQuestions = this.getArguments().getInt(Constants.TOTAL_QUESTIONS, 10);
             mCategory = this.getArguments().getString(Constants.CATEGORY);
             mDifficulty = this.getArguments().getString(Constants.DIFFICULTY);
+
         }
 
         historyAdapter = new HistoryAdapter(getActivity());
@@ -48,11 +52,14 @@ public class HistoryFragment extends Fragment {
     }
 
     private List<History> getListHistories() {
-        List<History> list = new ArrayList<>(){};
-            String scoreString = Integer.toString(mCorrectAnswers) + "/" + Integer.toString(mTotalQuestions);
-            list.add(new History(scoreString, mCategory, mDifficulty, "6/12/2022"));
+        String scoreString = Integer.toString(mCorrectAnswers) + "/" + Integer.toString(mTotalQuestions);
+         Histories.setHistories(mNumberOfHistories, new History(scoreString, mCategory, mDifficulty, "9/12/2022"));
 
-        return list;
+//        List<History> list = new ArrayList<>(){};
+//        String scoreString = Integer.toString(mCorrectAnswers) + "/" + Integer.toString(mTotalQuestions);
+//        list.add(new History(scoreString, mCategory, mDifficulty, "6/12/2022"));
 
+
+        return Histories.historiesList;
     }
 }

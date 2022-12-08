@@ -24,6 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     private int mTotalQuestions ;
     private String mCategory = "";
     private String mDifficulty = "";
+    private int mNumberofHistories;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -40,6 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         mTotalQuestions = getIntent().getIntExtra(Constants.TOTAL_QUESTIONS, 10);
         mCategory = getIntent().getStringExtra(Constants.CATEGORY);
         mDifficulty = getIntent().getStringExtra(Constants.DIFFICULTY);
+        mNumberofHistories = getIntent().getIntExtra(Constants.NUM_OF_HISTORIES, 0);
 
 
         // Set HomeFragment as a default
@@ -81,6 +83,7 @@ public class HomeActivity extends AppCompatActivity {
         bundle.putInt(Constants.TOTAL_QUESTIONS,mTotalQuestions);
         bundle.putString(Constants.DIFFICULTY, mDifficulty);
         bundle.putString(Constants.CATEGORY,mCategory);
+        bundle.putInt(Constants.NUM_OF_HISTORIES, 0);
 
         fragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
