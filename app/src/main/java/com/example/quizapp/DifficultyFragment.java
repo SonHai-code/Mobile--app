@@ -38,7 +38,6 @@ public class DifficultyFragment extends Fragment implements View.OnClickListener
             mUserName = this.getArguments().getString(Constants.USER_NAME);
         }
 
-
         binding.cvEasy.setOnClickListener(this);
         binding.cvMedium.setOnClickListener(this);
         binding.cvHard.setOnClickListener(this);

@@ -20,6 +20,10 @@ import com.example.quizapp.databinding.ActivityHomeBinding;
 public class HomeActivity extends AppCompatActivity {
     ActivityHomeBinding binding;
     private String mUserName = "";
+    private int mCorrectAnswers ;
+    private int mTotalQuestions ;
+    private String mCategory = "";
+    private String mDifficulty = "";
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -31,16 +35,15 @@ public class HomeActivity extends AppCompatActivity {
         // Get username from MainActivity
         mUserName = getIntent().getStringExtra(Constants.USER_NAME);
 
-        // Send username data to HomeFragment and set HomeFragment as Default
-       HomeFragment homeFragment = new HomeFragment();
+        // Get data from ResultActivity after pressing FINISH button
+        mCorrectAnswers = getIntent().getIntExtra(Constants.CORRECT_ANSWER, 0);
+        mTotalQuestions = getIntent().getIntExtra(Constants.TOTAL_QUESTIONS, 10);
+        mCategory = getIntent().getStringExtra(Constants.CATEGORY);
+        mDifficulty = getIntent().getStringExtra(Constants.DIFFICULTY);
 
-       Bundle bundle = new Bundle();
-       bundle.putString(Constants.USER_NAME, mUserName);
-
-       homeFragment.setArguments(bundle);
 
         // Set HomeFragment as a default
-       replaceFragment(homeFragment);
+       replaceFragment(new HomeFragment());
 
         // Set bottom navigation bar selections
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -60,12 +63,26 @@ public class HomeActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             // Restore value of members from saved state
            mUserName = savedInstanceState.getString(Constants.USER_NAME);
+            mCorrectAnswers = savedInstanceState.getInt(Constants.CORRECT_ANSWER, 0);
+            mTotalQuestions = savedInstanceState.getInt(Constants.TOTAL_QUESTIONS, 10);
+            mCategory = savedInstanceState.getString(Constants.CATEGORY);
+            mDifficulty = savedInstanceState.getString(Constants.DIFFICULTY);
+
         } else {
             mUserName = "Default Name";
         }
     }
 
     private void replaceFragment(Fragment fragment) {
+        // Send username data to HomeFragment and set HomeFragment as Default
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.USER_NAME, mUserName);
+        bundle.putInt(Constants.CORRECT_ANSWER,mCorrectAnswers);
+        bundle.putInt(Constants.TOTAL_QUESTIONS,mTotalQuestions);
+        bundle.putString(Constants.DIFFICULTY, mDifficulty);
+        bundle.putString(Constants.CATEGORY,mCategory);
+
+        fragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment).commit();
     }
@@ -75,6 +92,11 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putString(Constants.USER_NAME, mUserName);
+        outState.putString(Constants.DIFFICULTY, mDifficulty);
+        outState.putString(Constants.CATEGORY, mCategory);
+        outState.putInt(Constants.CORRECT_ANSWER, mCorrectAnswers);
+        outState.putInt(Constants.TOTAL_QUESTIONS, mTotalQuestions);
+
         super.onSaveInstanceState(outState);
     }
 

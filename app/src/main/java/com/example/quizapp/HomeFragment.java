@@ -36,8 +36,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             mUserName = this.getArguments().getString(Constants.USER_NAME);
         }
 
-
-
         binding.textView3.setText("Hi" + " " + mUserName);
 
         binding.cvMath.setOnClickListener(this);

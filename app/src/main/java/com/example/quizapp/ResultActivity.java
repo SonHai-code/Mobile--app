@@ -21,8 +21,12 @@ public class ResultActivity extends AppCompatActivity {
         String username = getIntent().getStringExtra(Constants.USER_NAME);
         binding.tvUsername.setText(username);
 
+        String category = getIntent().getStringExtra(Constants.CATEGORY);
+        String difficulty = getIntent().getStringExtra(Constants.DIFFICULTY);
+
         int totalQuestions = getIntent().getIntExtra(Constants.TOTAL_QUESTIONS, 0);
         int correctAnswers = getIntent().getIntExtra(Constants.CORRECT_ANSWER, 0);
+
 
 
         binding.tvScore.setText("Your score is " + correctAnswers + "/" + totalQuestions );
@@ -31,6 +35,11 @@ public class ResultActivity extends AppCompatActivity {
             Intent intent = new Intent(this, HomeActivity.class);
 
             intent.putExtra(Constants.USER_NAME, binding.tvUsername.getText().toString().trim());
+            intent.putExtra(Constants.CATEGORY, category);
+            intent.putExtra(Constants.DIFFICULTY, difficulty);
+            intent.putExtra(Constants.CORRECT_ANSWER, correctAnswers);
+            intent.putExtra(Constants.TOTAL_QUESTIONS, totalQuestions);
+
             startActivity(intent);
             finish();
         });
