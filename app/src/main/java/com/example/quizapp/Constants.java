@@ -629,7 +629,7 @@ public class Constants {
                 "boy", "girl",
                 "X", "either",2);
 
-        Question q8_science_hard = new Question(118,"xx",
+        Question q8_science_hard = new Question(118,"MCQ Questions for Class 10 Magnetic Effect of Electric Current Question 10",
                 0, "HARD", "SCIENCE",
                 "use of compass needle", "Right hand thumb rule",
                 "fleming left hand rule", "either (a) or (b)",4);
@@ -686,7 +686,7 @@ public class Constants {
         // Adding single question to result questions list
         // Condition (category & difficulty)
         for (Question question : questions) {
-            if(question.getDifficulty().toString().trim().equals(difficulty) && question.getCategory().toString().trim().equals(category) ) {
+            if(question.getDifficulty().toString().equals(difficulty) && question.getCategory().toString().equals(category) ) {
                 filteredQuestionsList.add(question);
             }
         }

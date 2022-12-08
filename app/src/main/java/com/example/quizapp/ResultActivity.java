@@ -28,7 +28,10 @@ public class ResultActivity extends AppCompatActivity {
         binding.tvScore.setText("Your score is " + correctAnswers + "/" + totalQuestions );
 
         binding.btnFinish.setOnClickListener(view -> {
-            startActivity(new Intent(this, MainActivity.class));
+            Intent intent = new Intent(this, HomeActivity.class);
+
+            intent.putExtra(Constants.USER_NAME, binding.tvUsername.getText().toString().trim());
+            startActivity(intent);
             finish();
         });
 

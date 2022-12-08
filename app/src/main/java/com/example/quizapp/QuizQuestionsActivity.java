@@ -108,69 +108,69 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
     @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
     @Override
     public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.tv_option_one:
-                    if (!isSubmitted){
-                        selectedOptionView(binding.tvOptionOne, 1);
-                    }
-                    break;
+        switch (view.getId()) {
+            case R.id.tv_option_one:
+                if (!isSubmitted){
+                    selectedOptionView(binding.tvOptionOne, 1);
+                }
+                break;
 
-                case R.id.tv_option_two:
-                    if (!isSubmitted) {
-                        selectedOptionView(binding.tvOptionTwo, 2);
-                    }
-                    break;
+            case R.id.tv_option_two:
+                if (!isSubmitted) {
+                    selectedOptionView(binding.tvOptionTwo, 2);
+                }
+                break;
 
-                case R.id.tv_option_three:
-                    if (!isSubmitted){
-                        selectedOptionView(binding.tvOptionThree, 3);
-                    }
-                    break;
+            case R.id.tv_option_three:
+                if (!isSubmitted){
+                    selectedOptionView(binding.tvOptionThree, 3);
+                }
+                break;
 
-                case R.id.tv_option_four:
-                    if (!isSubmitted) {
-                        selectedOptionView(binding.tvOptionFour, 4);
-                    }
-                    break;
+            case R.id.tv_option_four:
+                if (!isSubmitted) {
+                    selectedOptionView(binding.tvOptionFour, 4);
+                }
+                break;
 
-                case R.id.btn_submit:
-                    if (mCurrentSelectedPosition == 0) {
-                        isSubmitted = false;
-                        mCurrentPosition++;
+            case R.id.btn_submit:
+                if (mCurrentSelectedPosition == 0) {
+                    isSubmitted = false;
+                    mCurrentPosition++;
 
-                        if (mCurrentPosition <= mQuestionsList.size()) {
-                            setQuestion();
-                        } else {
-                            Intent intent = new Intent(this, ResultActivity.class);
-                            intent.putExtra(Constants.USER_NAME, mUserName);
-                            intent.putExtra(Constants.CORRECT_ANSWER, mCorrectAnswers);
-                            intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList.size());
-                            intent.putExtra(Constants.DIFFICULTY,mDifficulty);
-                            intent.putExtra(Constants.CATEGORY, mCategory);
-                            startActivity(intent);
-                            finish();
-                        }
+                    if (mCurrentPosition <= mQuestionsList.size()) {
+                        setQuestion();
                     } else {
-                        isSubmitted = true;
-                        Question question = mQuestionsList.get(mCurrentPosition - 1);
-                        if (mCurrentSelectedPosition == question.getCorrectAnswer()) {
-                            mCorrectAnswers ++;
-                            answerView(mCurrentSelectedPosition, R.drawable.correct_option_border_bg);
-                        } else {
-                            answerView(mCurrentSelectedPosition, R.drawable.wrong_option_border_bg);
-                            answerView(question.getCorrectAnswer(),R.drawable.result_option_border_bg);
-                        }
-
-                        binding.btnSubmit.setText("NEXT");
-
-                        if (mCurrentPosition == mQuestionsList.size()) {
-                            binding.btnSubmit.setText("FINISH");
-                        }
-                        mCurrentSelectedPosition = 0;
+                        Intent intent = new Intent(this, ResultActivity.class);
+                        intent.putExtra(Constants.USER_NAME, mUserName);
+                        intent.putExtra(Constants.CORRECT_ANSWER, mCorrectAnswers);
+                        intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList.size());
+                        intent.putExtra(Constants.DIFFICULTY,mDifficulty);
+                        intent.putExtra(Constants.CATEGORY, mCategory);
+                        startActivity(intent);
+                        finish();
                     }
-                    break;
-         }
+                } else {
+                    isSubmitted = true;
+                    Question question = mQuestionsList.get(mCurrentPosition - 1);
+                    if (mCurrentSelectedPosition == question.getCorrectAnswer()) {
+                        mCorrectAnswers ++;
+                        answerView(mCurrentSelectedPosition, R.drawable.correct_option_border_bg);
+                    } else {
+                        answerView(mCurrentSelectedPosition, R.drawable.wrong_option_border_bg);
+                        answerView(question.getCorrectAnswer(),R.drawable.result_option_border_bg);
+                    }
+
+                    binding.btnSubmit.setText("NEXT");
+
+                    if (mCurrentPosition == mQuestionsList.size()) {
+                        binding.btnSubmit.setText("FINISH");
+                    }
+                    mCurrentSelectedPosition = 0;
+                }
+                break;
         }
+    }
 
     // Set background for wrong/correct answer question
     private void answerView(int answer, int drawableView) {

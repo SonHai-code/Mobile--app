@@ -25,16 +25,19 @@ import java.util.Objects;
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private FragmentHomeBinding binding;
+    private String mUserName = "";
     @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        HomeActivity mHomeActivity = (HomeActivity) getActivity();
+        if (getArguments() != null) {
+            mUserName = this.getArguments().getString(Constants.USER_NAME);
+        }
 
-        assert mHomeActivity != null;
-        String mUserName = mHomeActivity.getUserName().toString();
+
+
         binding.textView3.setText("Hi" + " " + mUserName);
 
         binding.cvMath.setOnClickListener(this);
@@ -45,11 +48,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         return binding.getRoot();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        binding = null;
+//    }
 
 
     @SuppressLint("NonConstantResourceId")
@@ -76,11 +79,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void sendCategoryData(String data) {
+        // Go to DifficultyFragment
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, new DifficultyFragment()).commit();
+
+        // Use bundle to save the data
         Bundle result = new Bundle();
         result.putString(Constants.CATEGORY, data);
-        getParentFragmentManager().setFragmentResult(Constants.CATEGORY, result);
+        result.putString(Constants.USER_NAME, mUserName);
 
+        DifficultyFragment difficultyFragment = new DifficultyFragment();
+        difficultyFragment.setArguments(result);
+
+        fragmentTransaction.replace(R.id.frame_layout, difficultyFragment).commit();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.quizapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -18,11 +19,7 @@ import com.example.quizapp.databinding.ActivityHomeBinding;
 
 public class HomeActivity extends AppCompatActivity {
     ActivityHomeBinding binding;
-    private String mUserName;
-
-    public String getUserName() {
-        return mUserName;
-    }
+    private String mUserName = "";
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -31,10 +28,19 @@ public class HomeActivity extends AppCompatActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Get username from MainActivity
         mUserName = getIntent().getStringExtra(Constants.USER_NAME);
 
-        // Set default fragment
-        replaceFragment(new HomeFragment());
+        // Send username data to HomeFragment and set HomeFragment as Default
+       HomeFragment homeFragment = new HomeFragment();
+
+       Bundle bundle = new Bundle();
+       bundle.putString(Constants.USER_NAME, mUserName);
+
+       homeFragment.setArguments(bundle);
+
+        // Set HomeFragment as a default
+       replaceFragment(homeFragment);
 
         // Set bottom navigation bar selections
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -50,14 +56,26 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         });
 
+        // Check whether we're recreating a previously destroyed instance
+        if (savedInstanceState != null) {
+            // Restore value of members from saved state
+           mUserName = savedInstanceState.getString(Constants.USER_NAME);
+        } else {
+            mUserName = "Default Name";
+        }
     }
 
-    // Handle bottom navigation bar
-    private void replaceFragment (Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, fragment);
-        fragmentTransaction.commit();
+    private void replaceFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment).commit();
+    }
+
+
+    // Handle saving data
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString(Constants.USER_NAME, mUserName);
+        super.onSaveInstanceState(outState);
     }
 
 
