@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,8 +21,8 @@ import com.example.quizapp.databinding.ActivityHomeBinding;
 public class HomeActivity extends AppCompatActivity {
     ActivityHomeBinding binding;
     private String mUserName = "";
-    private int mCorrectAnswers ;
-    private int mTotalQuestions ;
+    private int mCorrectAnswers;
+    private int mTotalQuestions;
     private String mCategory = "";
     private String mDifficulty = "";
     private int mNumberofHistories;
@@ -45,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         // Set HomeFragment as a default
-       replaceFragment(new HomeFragment());
+        replaceFragment(new HomeFragment());
 
         // Set bottom navigation bar selections
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -64,12 +65,7 @@ public class HomeActivity extends AppCompatActivity {
         // Check whether we're recreating a previously destroyed instance
         if (savedInstanceState != null) {
             // Restore value of members from saved state
-           mUserName = savedInstanceState.getString(Constants.USER_NAME);
-            mCorrectAnswers = savedInstanceState.getInt(Constants.CORRECT_ANSWER, 0);
-            mTotalQuestions = savedInstanceState.getInt(Constants.TOTAL_QUESTIONS, 10);
-            mCategory = savedInstanceState.getString(Constants.CATEGORY);
-            mDifficulty = savedInstanceState.getString(Constants.DIFFICULTY);
-
+            mUserName = savedInstanceState.getString(Constants.USER_NAME);
         } else {
             mUserName = "Default Name";
         }
@@ -79,10 +75,10 @@ public class HomeActivity extends AppCompatActivity {
         // Send username data to HomeFragment and set HomeFragment as Default
         Bundle bundle = new Bundle();
         bundle.putString(Constants.USER_NAME, mUserName);
-        bundle.putInt(Constants.CORRECT_ANSWER,mCorrectAnswers);
-        bundle.putInt(Constants.TOTAL_QUESTIONS,mTotalQuestions);
+        bundle.putInt(Constants.CORRECT_ANSWER, mCorrectAnswers);
+        bundle.putInt(Constants.TOTAL_QUESTIONS, mTotalQuestions);
         bundle.putString(Constants.DIFFICULTY, mDifficulty);
-        bundle.putString(Constants.CATEGORY,mCategory);
+        bundle.putString(Constants.CATEGORY, mCategory);
         bundle.putInt(Constants.NUM_OF_HISTORIES, 0);
 
         fragment.setArguments(bundle);
@@ -95,11 +91,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putString(Constants.USER_NAME, mUserName);
-        outState.putString(Constants.DIFFICULTY, mDifficulty);
-        outState.putString(Constants.CATEGORY, mCategory);
-        outState.putInt(Constants.CORRECT_ANSWER, mCorrectAnswers);
-        outState.putInt(Constants.TOTAL_QUESTIONS, mTotalQuestions);
-
         super.onSaveInstanceState(outState);
     }
 
@@ -120,16 +111,17 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.feedback:
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-                sendIntent.setType("text/plain");
-
-                Intent shareIntent = Intent.createChooser(sendIntent, null);
-                startActivity(shareIntent);
-                break;
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL, new String[]{"20021524@vnu.edu.vn"});
+                i.putExtra(Intent.EXTRA_SUBJECT, "Feedback " + Build.VERSION.RELEASE);
+                try {
+                    startActivity(Intent.createChooser(i, "Send mail..."));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                    break;
+                }
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

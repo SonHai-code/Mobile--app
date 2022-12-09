@@ -1,7 +1,9 @@
 package com.example.quizapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.example.quizapp.databinding.FragmentHistoryBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class HistoryFragment extends Fragment {
@@ -28,8 +30,7 @@ public class HistoryFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHistoryBinding.inflate(inflater, container, false);
 
         if (this.getArguments() != null) {
@@ -51,15 +52,12 @@ public class HistoryFragment extends Fragment {
         return binding.getRoot();
     }
 
+
+
     private List<History> getListHistories() {
-        String scoreString = Integer.toString(mCorrectAnswers) + "/" + Integer.toString(mTotalQuestions);
-         Histories.setHistories(mNumberOfHistories, new History(scoreString, mCategory, mDifficulty, "9/12/2022"));
-
-//        List<History> list = new ArrayList<>(){};
-//        String scoreString = Integer.toString(mCorrectAnswers) + "/" + Integer.toString(mTotalQuestions);
-//        list.add(new History(scoreString, mCategory, mDifficulty, "6/12/2022"));
-
-
+        String scoreString = mCorrectAnswers + "/" + mTotalQuestions;
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+         Histories.setHistories(mNumberOfHistories, new History(scoreString, mCategory, mDifficulty, simpleDateFormat.format(Calendar.getInstance().getTime())));
         return Histories.historiesList;
     }
 }

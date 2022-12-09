@@ -28,27 +28,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Group Developers"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tran Son Hai - 20021524"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tran Minh Hoang - 20021524"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Contact Information"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="20021524@vnu.edu.vn"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="20021524@vnu.edu.vn"/>
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Group Developers \nTrần Sơn Hải - 20021524\nTrần Ngọc Huy Hoàng - 20021533\nContact Details\n\u202220021524@vnu.edu.vn\n\u202220021533@vnu.edu.vn"/>
+
         </LinearLayout>
 
 

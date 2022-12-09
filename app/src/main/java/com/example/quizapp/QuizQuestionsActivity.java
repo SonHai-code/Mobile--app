@@ -10,17 +10,17 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.quizapp.databinding.ActivityQuizQuestionsBinding;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class QuizQuestionsActivity extends AppCompatActivity implements View.OnClickListener {
     ActivityQuizQuestionsBinding binding;
     private int mCurrentPosition = 1 ; //The position of current question out of 10
-    private ArrayList<Question> mQuestionsList = new ArrayList<Question>();
+    private ArrayList<Question> mQuestionsList = new ArrayList<>();
     private int mCurrentSelectedPosition = 0; // The position of selected choice
     private int mCorrectAnswers = 0;
     private String mUserName;
@@ -41,6 +41,8 @@ public class QuizQuestionsActivity extends AppCompatActivity implements View.OnC
 
         // mQuestionList will contain 10 questions of each type-difficulty
         mQuestionsList = Constants.getQuestions(mDifficulty, mCategory);
+
+        Collections.shuffle(mQuestionsList);
 
         setQuestion();
 

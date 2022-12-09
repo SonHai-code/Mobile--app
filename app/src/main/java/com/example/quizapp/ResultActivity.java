@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.media.session.MediaSession;
 import android.os.Bundle;
-import android.os.Parcelable;
 
 import com.example.quizapp.databinding.ActivityResultBinding;
 
