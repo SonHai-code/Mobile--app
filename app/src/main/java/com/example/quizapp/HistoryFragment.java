@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.quizapp.databinding.FragmentHistoryBinding;
 
@@ -26,15 +27,14 @@ public class HistoryFragment extends Fragment {
     private int mTotalQuestions;
     private String mCategory = "";
     private String mDifficulty = "";
-    private int mNumberOfHistories;
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHistoryBinding.inflate(inflater, container, false);
 
+
         if (this.getArguments() != null) {
-            mNumberOfHistories = this.getArguments().getInt(Constants.NUM_OF_HISTORIES, 0);
             mCorrectAnswers = this.getArguments().getInt(Constants.CORRECT_ANSWER, 0);
             mTotalQuestions = this.getArguments().getInt(Constants.TOTAL_QUESTIONS, 10);
             mCategory = this.getArguments().getString(Constants.CATEGORY);
@@ -53,11 +53,20 @@ public class HistoryFragment extends Fragment {
     }
 
 
-
     private List<History> getListHistories() {
+        // Get score in String type
         String scoreString = mCorrectAnswers + "/" + mTotalQuestions;
+
+        // Get the Date data
         @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-         Histories.setHistories(mNumberOfHistories, new History(scoreString, mCategory, mDifficulty, simpleDateFormat.format(Calendar.getInstance().getTime())));
+        if (Histories.mNumberOfHistories > 0){
+
+//            Histories.setHistories(i, new History(scoreString, mCategory, mDifficulty,
+//                    simpleDateFormat.format(Calendar.getInstance().getTime())));
+            Histories.historiesList.add(Histories.mNumberOfHistories - 1, new History(scoreString, mCategory, mDifficulty,
+                    simpleDateFormat.format(Calendar.getInstance().getTime())));
+            Histories.mNumberOfHistories --;
+        }
         return Histories.historiesList;
     }
 }

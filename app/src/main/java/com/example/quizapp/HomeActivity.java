@@ -25,7 +25,6 @@ public class HomeActivity extends AppCompatActivity {
     private int mTotalQuestions;
     private String mCategory = "";
     private String mDifficulty = "";
-    private int mNumberofHistories;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -42,7 +41,6 @@ public class HomeActivity extends AppCompatActivity {
         mTotalQuestions = getIntent().getIntExtra(Constants.TOTAL_QUESTIONS, 10);
         mCategory = getIntent().getStringExtra(Constants.CATEGORY);
         mDifficulty = getIntent().getStringExtra(Constants.DIFFICULTY);
-        mNumberofHistories = getIntent().getIntExtra(Constants.NUM_OF_HISTORIES, 0);
 
 
         // Set HomeFragment as a default
@@ -66,22 +64,21 @@ public class HomeActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             // Restore value of members from saved state
             mUserName = savedInstanceState.getString(Constants.USER_NAME);
-        } else {
-            mUserName = "Default Name";
         }
     }
 
     private void replaceFragment(Fragment fragment) {
         // Send username data to HomeFragment and set HomeFragment as Default
-        Bundle bundle = new Bundle();
-        bundle.putString(Constants.USER_NAME, mUserName);
-        bundle.putInt(Constants.CORRECT_ANSWER, mCorrectAnswers);
-        bundle.putInt(Constants.TOTAL_QUESTIONS, mTotalQuestions);
-        bundle.putString(Constants.DIFFICULTY, mDifficulty);
-        bundle.putString(Constants.CATEGORY, mCategory);
-        bundle.putInt(Constants.NUM_OF_HISTORIES, 0);
 
-        fragment.setArguments(bundle);
+
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.USER_NAME, mUserName);
+            bundle.putInt(Constants.CORRECT_ANSWER, mCorrectAnswers);
+            bundle.putInt(Constants.TOTAL_QUESTIONS, mTotalQuestions);
+            bundle.putString(Constants.DIFFICULTY, mDifficulty);
+            bundle.putString(Constants.CATEGORY, mCategory);
+            fragment.setArguments(bundle);
+
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout, fragment).commit();
     }
